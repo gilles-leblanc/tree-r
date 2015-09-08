@@ -1,0 +1,4 @@
+[package]
+name = "tree-r"
+version = "0.1.0"
+authors = ["Gilles Leblanc <gilles.leblanc@gmail.com>"]
