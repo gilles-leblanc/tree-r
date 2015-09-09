@@ -7,7 +7,7 @@ struct TreeNode {
 
 fn main() {
     let root = build_tree();
-    root.depth_first_pre();
+    root.depth_first_post();
 }
 
 fn build_tree() -> TreeNode {
@@ -36,5 +36,17 @@ impl TreeNode {
         if self.right.is_some() {
             self.right.unwrap().depth_first_pre();
         }
+    }
+
+    fn depth_first_post(self) {
+        if self.left.is_some() {
+            self.left.unwrap().depth_first_post();
+        }
+
+        if self.right.is_some() {
+            self.right.unwrap().depth_first_post();
+        }
+
+        print!("{}, ", self.value);
     }
 }
