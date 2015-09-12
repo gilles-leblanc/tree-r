@@ -1,3 +1,4 @@
+use std::collections::VecDeque;
 
 struct TreeNode {
     value: i32,
@@ -7,7 +8,7 @@ struct TreeNode {
 
 fn main() {
     let root = build_tree();
-    root.depth_first_post();
+    root.breadth_first();
 }
 
 fn build_tree() -> TreeNode {
@@ -48,5 +49,29 @@ impl TreeNode {
         }
 
         print!("{}, ", self.value);
+    }
+
+    fn breadth_first(self) {
+        let mut queue = VecDeque::new();
+        queue.push_back(self);
+
+        while !queue.is_empty() {
+            let node = queue.pop_front();
+
+            match node {
+                Some(e) => {
+                    print!("{}, ", e.value);
+
+                    if e.left.is_some() {
+                        queue.push_back(*e.left.unwrap());
+                    }
+
+                    if e.right.is_some() {
+                        queue.push_back(*e.right.unwrap());
+                    }
+                },
+                None => return,
+            }
+        }
     }
 }
