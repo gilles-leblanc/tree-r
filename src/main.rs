@@ -8,6 +8,10 @@ struct TreeNode {
 
 fn main() {
     let root = build_tree();
+    root.depth_first_pre();
+    println!("");
+    root.depth_first_post();
+    println!("");
     root.breadth_first();
 }
 
@@ -27,25 +31,25 @@ fn build_tree() -> TreeNode {
 }
 
 impl TreeNode {
-    fn depth_first_pre(self) {
+    fn depth_first_pre(&self) {
         print!("{}, ", self.value);
 
-        if self.left.is_some() {
-            self.left.unwrap().depth_first_pre();
+        if let Some(ref left) = self.left {
+            left.depth_first_pre();
         }
 
-        if self.right.is_some() {
-            self.right.unwrap().depth_first_pre();
+        if let Some(ref right) = self.right {
+            right.depth_first_pre();
         }
     }
 
-    fn depth_first_post(self) {
-        if self.left.is_some() {
-            self.left.unwrap().depth_first_post();
+    fn depth_first_post(&self) {
+        if let Some(ref left) = self.left {
+            left.depth_first_post();
         }
 
-        if self.right.is_some() {
-            self.right.unwrap().depth_first_post();
+        if let Some(ref right) = self.right {
+            right.depth_first_post();
         }
 
         print!("{}, ", self.value);
