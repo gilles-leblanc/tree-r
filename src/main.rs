@@ -1,9 +1,9 @@
 use std::collections::VecDeque;
 
-struct TreeNode {
-    value: i32,
-    left: Option<Box<TreeNode>>,
-    right: Option<Box<TreeNode>>,
+struct TreeNode<T> {
+    value: T,
+    left: Option<Box<TreeNode<T>>>,
+    right: Option<Box<TreeNode<T>>>,
 }
 
 fn main() {
@@ -16,7 +16,7 @@ fn main() {
     println!("");
 }
 
-fn build_tree() -> TreeNode {
+fn build_tree() -> TreeNode<i32> {
     let root = TreeNode { value: 2,
         left: Some(Box::new(TreeNode { value: 7,
                             left: Some(Box::new(TreeNode { value: 2, left: None, right: None })),
@@ -31,7 +31,7 @@ fn build_tree() -> TreeNode {
     return root;
 }
 
-impl TreeNode {
+impl TreeNode<i32> {
     fn depth_first_pre(&self) {
         print!("{}, ", self.value);
 
